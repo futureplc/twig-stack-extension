@@ -13,7 +13,7 @@ class PushOnceTokenParser extends AbstractTokenParser
 
     public function parse(Token $token): PushNode
     {
-        return $this->makePushNode($this->getTag(), $token, $this->parser, endTokenName:'endpushonce', pushOnce: true);
+        return $this->makePushNode($this->getTag(), $token, $this->parser, endTokenName: 'endpushonce', pushOnce: true);
     }
 
     public function getTag(): string

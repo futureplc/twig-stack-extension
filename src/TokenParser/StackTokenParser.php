@@ -24,7 +24,7 @@ class StackTokenParser extends AbstractTokenParser
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function getTag()
     {
