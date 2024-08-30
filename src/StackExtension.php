@@ -10,8 +10,12 @@ use Twig\Extension\AbstractExtension;
 
 class StackExtension extends AbstractExtension
 {
-    public function __construct(protected StackManager $stackManager)
+
+    protected StackManager $stackManager;
+
+    public function __construct()
     {
+        $this->stackManager = new StackManager;
     }
 
     public function getTokenParsers(): array
