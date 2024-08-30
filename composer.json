@@ -1,45 +1,44 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "ampedweb/twig-stack-extension",
+    "description": "Adds the `push` and `stack` tags two twig for better asset management throughout templates.",
     "keywords": [
-        ":vendor_name",
-        ":package_slug"
+        "ampedweb",
+        "twig-stack-extension"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com/ampedweb/twig-stack-extension",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "Chris Powell",
+            "email": "chris@ampedweb.dev",
             "role": "Developer"
         }
     ],
     "require": {
-        "php": "^8.1"
+        "php": "^8.3"
     },
     "require-dev": {
-        :require_dev_testing,
-        :require_dev_codestyle,
-        "spatie/ray": "^1.28"
+        "phpunit/phpunit": "^11.3.1",
+        "friendsofphp/php-cs-fixer": "^3.21.1"
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src"
+            "AmpedWeb\\TwigStackExtension\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests"
+            "AmpedWeb\\TwigStackExtension\\Tests\\": "tests"
         }
     },
     "scripts": {
-        :scripts_testing,
-        :scripts_codestyle
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage",
+        "format": "vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php --allow-risky=yes"
     },
     "config": {
         "sort-packages": true,
         "allow-plugins": {
-            :plugins_testing,
             "phpstan/extension-installer": true
         }
     },
