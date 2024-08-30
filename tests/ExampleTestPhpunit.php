@@ -1,6 +1,6 @@
 <?php
 
-namespace VendorName\Skeleton\Tests;
+namespace AmpedWeb\TwigStackExtension\Tests;
 
 use PHPUnit\Framework\TestCase;
 
