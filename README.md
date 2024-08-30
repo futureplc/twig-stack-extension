@@ -7,11 +7,11 @@
 ---
 
 This package introduces the `{% push %}`, `{% pushonce %}` and `{% stack %}` tags to the Twig templating engine.
-They allow for the dynamic injection content into specific sections of a layout.
+They allow for dynamic injection content into specific sections of a layout.
 
-They allow you to "push" content from child views into a named stack, which can then be rendered in the parent view
+They allow you to "push" content from child views into a named "stack", which can then be rendered in the parent view
 using `{% stack %}`. This is particularly helpful for managing scripts, styles, or other elements that need to be
-included in a specific order or only when certain conditions are met.
+included in a specific order or only when certain conditions are met. Such as when using [Twig Components](https://symfony.com/bundles/ux-twig-component/current/index.html).
 
 ## Installation
 
@@ -26,14 +26,14 @@ composer require futureplc/twig-stack-extension
 First, add the extension to your Twig instance:
 
 ```php
-use AmpedWeb\TwigStackExtension\StackExtension;
+use Future\TwigStackExtension\StackExtension;
 
 $twig->addExtension(new StackExtension);
 ```
 Next you will need to either, use our custom Twig Environment here:
 
 ```php
-use AmpedWeb\TwigStackExtension\Environment;
+use Future\TwigStackExtension\Environment;
 ```
 Or, if you have already overridden your `Environment` class, then you will need to override the `render()` method and add:
 
