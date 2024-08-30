@@ -21,7 +21,7 @@ class StackManager
     {
         $stack = $this->getStackByName($name);
 
-        return '<template data-stack-placeholder="' . $stack->getName() . '"></template>';
+        return '<template data-stack-placeholder="'.$stack->getName().'"></template>';
     }
 
     public function replaceStackPlaceholdersWithStackContent(string $contents): string
