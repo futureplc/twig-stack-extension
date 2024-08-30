@@ -3,19 +3,12 @@
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/:vendor_slug/:package_slug.svg?style=flat-square)](https://packagist.org/packages/:vendor_slug/:package_slug)
 [![Tests](https://img.shields.io/github/actions/workflow/status/:vendor_slug/:package_slug/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/:vendor_slug/:package_slug/actions/workflows/run-tests.yml)
 [![Total Downloads](https://img.shields.io/packagist/dt/:vendor_slug/:package_slug.svg?style=flat-square)](https://packagist.org/packages/:vendor_slug/:package_slug)
-<!--delete-->
----
 
-This package introduces the `{% push %}`, `{% pushonce %}` and `{% stack %}` tags to the Twig templating engine.
-They allow for dynamic injection content into specific sections of a layout.
-
-They allow you to "push" content from child views into a named "stack", which can then be rendered in the parent view
-using `{% stack %}`. This is particularly helpful for managing scripts, styles, or other elements that need to be
-included in a specific order or only when certain conditions are met. Such as when using [Twig Components](https://symfony.com/bundles/ux-twig-component/current/index.html).
+This Twig extension allows you to "push" content from child views into a named "stack" which can be rendered in another view or layout. This is perfect for many scenarios, like pushing scripts or styles used by components.
 
 ## Installation
 
-You can install the package via composer:
+You can install the package via Composer:
 
 ```bash
 composer require futureplc/twig-stack-extension
@@ -23,131 +16,80 @@ composer require futureplc/twig-stack-extension
 
 ### Setup in your project
 
-First, add the extension to your Twig instance:
+First, add the extension to the Twig instance:
 
 ```php
-use Future\TwigStackExtension\StackExtension;
-
-$twig->addExtension(new StackExtension);
+$twig->addExtension(new \Future\TwigStackExtension\StackExtension());
 ```
-Next you will need to either, use our custom Twig Environment here:
+
+Next, we need to modify the output of the content rendered by Twig in order to ensure the stacks are injected into the right place properly.
+
+One way this can be done is by using the custom `Environment` class provided by the package.
+
+```diff
+- use Twig\Environment;
++ use Future\TwigStackExtension\Environment;
+
+// ...
+
+$twig = new Environment($loader);
+```
+
+If you don't want to override your `Environment`, you can manually call the extension on the rendered output.
 
 ```php
-use Future\TwigStackExtension\Environment;
+$result = $twig->render('view.html.twig');
+
+$result = $twig
+    ->getExtension(\Future\TwigStackExtension\StackExtension::class)
+    ->getStackManager()
+    ->replaceStackPlaceholdersWithStackContent($result);
 ```
-Or, if you have already overridden your `Environment` class, then you will need to override the `render()` method and add:
 
-```php
-    /**
-     * @param string|TemplateWrapper $name The template name
-     *
-     * @throws LoaderError
-     * @throws RuntimeError
-     * @throws SyntaxError
-     */
-    public function render($name, array $context = []): string
-    {
-        $html = parent::render($name, $context);
-
-        if ($this->hasExtension(StackExtension::class)) {
-            $stackManager = $this->getExtension(StackExtension::class)->getStackManager();
-            $html = $stackManager->replaceStackPlaceholdersWithStackContent($html);
-        }
-
-        return $html;
-    }
-```
-This will ensure any `{% stack %}` tag placeholders are replaced.
+It's all set up and ready to be used.
 
 ## Usage
 
-In Twig templates you will have three new tags available.
+In Twig templates, you will have three new tags to use, `{% push %}` and `{% pushonce %}` to push content to a named stack, and `{% stack %}` to render the named stack.
 
-### Stack
-```
-{% stack 'stack-name' %}
-```
-Place this where you would like any content "pushed" to the stack to be output.
+### Pushing to a stack
 
-### Push
-```html 
-{% push 'stack-name' %}
-<div>Content you would like to push</div>
+Wrap any content you want "pushed" to the stack each time this part of the Twig template is parsed.
+
+```twig
+<!-- partial.twig -->
+{% push 'scripts' %}
+    <script>console.log('Pushed script executed')</script>
 {% endpush %}
 ```
-Wrap any content you would like "pushed" to the stack when this part of the Twig template is parsed.
-### Push Once
 
-```html 
-{% pushonce 'stack-name' %}
-<div>Content you would like to push only once</div>
-{% endpush %}
+Using `{% push %}` will push the contents to the stack _every time_ it is called.
+
+If you want to push only the first time the code is referenced, for example, including a library needed for a component, you can use the `{% pushonce %}` tag instead.
+
+```twig
+<!-- components/datepicker.twig -->
+<input type="text" class="datepicker" />
+
+{% pushonce 'scripts' %}
+    <script src="/path/to/datepicker-lib.js" />
+{% endpushonce %}
 ```
-This works essentially the same as `{% push 'stack-name' %}`, however it will ensure that this content is only added to the stack once. Avoiding duplication.
 
-### Basic Example of `{% pushonce %}`
+### Rendering a stack
 
-### layout.html.twig (Parent Template)
-The parent template includes {% stack %} directives to output any content pushed to the 'styles' and 'scripts' stacks.
+You can use the `{% stack %}` tag to render the contents of the stack.
 
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}My Website{% endblock %}</title>
-
-    {# Render any pushed styles #}
-    {% stack 'styles' %}
-</head>
-<body>
-    {% block content %}{% endblock %}
-
-    {# Render any pushed scripts #}
-    {% stack 'scripts' %}
-</body>
+```
+<!-- layout.twig -->
+<html>
+    <head>...</head>
+    <body>
+        ...
+        {% stack 'scripts' %}
+    </body>
 </html>
 ```
-### child.html.twig (Child Template)
-This template uses the same include for the `component.html.twig` partial twice, each time with different parameters (title and content). This allows you to reuse the same partial for different sections of the page, with different content.
-
-```html
-{% extends 'base.html.twig' %}
-
-{% block title %}Child Page Title{% endblock %}
-
-{% block content %}
-<h1>Welcome to the Child Page</h1>
-<p>This is some content on the child page.</p>
-
-{# Include the same component with different parameters #}
-{% include 'partials/component.html.twig' with {'title': 'Section 1', 'content': 'Content for section 1'} %}
-{% include 'partials/component.html.twig' with {'title': 'Section 2', 'content': 'Content for section 2'} %}
-
-{% endblock %}
-```
-### partials/component.html.twig (Component Template)
-The partial template includes `{% pushonce %}` directives to ensure that shared styles and scripts are only pushed to the stack once. Even though this partial is included multiple times with different parameters, the `{% pushonce %}` directive prevents duplicate inclusion of the assets.
-```html
-<div>
-    <h2>{{ title }}</h2>
-    <p>{{ content }}</p>
-</div>
-
-{# Push shared styles, but ensure they are only included once #}
-{% pushonce 'styles' %}
-<link rel="stylesheet" href="/css/shared-styles.css">
-{% endpushonce %}
-
-{# Push shared scripts, but ensure they are only included once #}
-{% pushonce 'scripts' %}
-<script src="/js/shared-scripts.js"></script>
-{% endpushonce %}
-```
-
-So in this case, the `styles` and `scripts` stacks will only include the `<link rel="stylesheet" href="/css/shared-styles.css">` and `<script src="/js/shared-scripts.js"></script>` once respectively.
-
 
 ## Testing
 
