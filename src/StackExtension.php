@@ -14,12 +14,12 @@ class StackExtension extends AbstractExtension
 
     public function __construct()
     {
-        $this->stackManager = new StackManager;
+        $this->stackManager = new StackManager();
     }
 
     public function getTokenParsers(): array
     {
-        return [new PushTokenParser, new PushOnceTokenParser, new StackTokenParser];
+        return [new PushTokenParser(), new PushOnceTokenParser(), new StackTokenParser()];
     }
 
     public function getStackManager(): StackManager
