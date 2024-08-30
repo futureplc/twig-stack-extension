@@ -11,7 +11,7 @@ use Twig\TemplateWrapper;
 class Environment extends BaseEnvironment
 {
     /**
-     * @param string|TemplateWrapper $name The template name
+     * @param  string|TemplateWrapper  $name  The template name
      *
      * @throws LoaderError
      * @throws RuntimeError

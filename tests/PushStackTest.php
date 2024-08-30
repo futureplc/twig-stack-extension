@@ -166,7 +166,7 @@ class PushStackTest extends TestCase
     protected function setupTwigEnvironmentWithExtension(array $loaderConfig): Environment
     {
         $twig = new Environment(new ArrayLoader($loaderConfig), ['debug' => true]);
-        $twig->addExtension(new StackExtension(new StackManager()));
+        $twig->addExtension(new StackExtension(new StackManager));
 
         return $twig;
     }
