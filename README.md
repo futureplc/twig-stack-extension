@@ -5,23 +5,59 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/:vendor_slug/:package_slug.svg?style=flat-square)](https://packagist.org/packages/:vendor_slug/:package_slug)
 <!--delete-->
 ---
-This package can be used as to scaffold a framework agnostic package. Follow these steps to get started:
 
-1. Press the "Use template" button at the top of this repo to create a new repo with the contents of this skeleton
-2. Run "php ./configure.php" to run a script that will replace all placeholders throughout all the files
-3. Have fun creating your package.
-4. If you need help creating a package, consider picking up our <a href="https://laravelpackage.training">Laravel Package Training</a> video course.
----
-<!--/delete-->
-This is where your description should go. Try and limit it to a paragraph or two. Consider adding a small example.
+This package introduces the `{% push %}`, `{% pushonce %}` and `{% stack %}` tags to the Twig templating engine.
+They allow for the dynamic injection content into specific sections of a layout.
+
+They allow you to "push" content from child views into a named stack, which can then be rendered in the parent view
+using `{% stack %}`. This is particularly helpful for managing scripts, styles, or other elements that need to be
+included in a specific order or only when certain conditions are met.
 
 ## Installation
 
 You can install the package via composer:
 
 ```bash
-composer require ampedweb/twig-stack-extension
+composer require futureplc/twig-stack-extension
 ```
+
+### Setup in your project
+
+First, add the extension to your Twig instance:
+
+```php
+use AmpedWeb\TwigStackExtension\StackExtension;
+
+$twig->addExtension(new StackExtension);
+```
+Next you will need to either, use our custom Twig Environment here:
+
+```php
+use AmpedWeb\TwigStackExtension\Environment;
+```
+Or, if you have already overridden your `Environment` class, then you will need to override the `render()` method and add:
+
+```php
+    /**
+     * @param string|TemplateWrapper $name The template name
+     *
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    public function render($name, array $context = []): string
+    {
+        $html = parent::render($name, $context);
+
+        if ($this->hasExtension(StackExtension::class)) {
+            $stackManager = $this->getExtension(StackExtension::class)->getStackManager();
+            $html = $stackManager->replaceStackPlaceholdersWithStackContent($html);
+        }
+
+        return $html;
+    }
+```
+This will ensure any `{% stack %}` tag placeholders are replaced.
 
 ## Usage
 
