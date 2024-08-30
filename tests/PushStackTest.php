@@ -2,13 +2,13 @@
 
 namespace AmpedWeb\TwigStackExtension\Tests;
 
-use Twig\Error\SyntaxError;
-use Twig\Loader\ArrayLoader;
-use PHPUnit\Framework\TestCase;
-use PHPUnit\Framework\Attributes\Test;
 use AmpedWeb\TwigStackExtension\Environment;
 use AmpedWeb\TwigStackExtension\StackExtension;
 use AmpedWeb\TwigStackExtension\TokenParser\StackManager;
+use PHPUnit\Framework\Attributes\Test;
+use PHPUnit\Framework\TestCase;
+use Twig\Error\SyntaxError;
+use Twig\Loader\ArrayLoader;
 
 class PushStackTest extends TestCase
 {

@@ -2,11 +2,11 @@
 
 namespace AmpedWeb\TwigStackExtension;
 
-use Twig\TemplateWrapper;
-use Twig\Error\LoaderError;
-use Twig\Error\SyntaxError;
-use Twig\Error\RuntimeError;
 use Twig\Environment as BaseEnvironment;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
+use Twig\TemplateWrapper;
 
 class Environment extends BaseEnvironment
 {
