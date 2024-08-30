@@ -2,11 +2,10 @@
 
 namespace AmpedWeb\TwigStackExtension\TokenParser;
 
-use Twig\Token;
-use Twig\Error\SyntaxError;
-use Twig\TokenParser\AbstractTokenParser;
 use AmpedWeb\TwigStackExtension\Node\PushNode;
 use AmpedWeb\TwigStackExtension\Traits\ProcessPushTag;
+use Twig\Token;
+use Twig\TokenParser\AbstractTokenParser;
 
 class PushTokenParser extends AbstractTokenParser
 {

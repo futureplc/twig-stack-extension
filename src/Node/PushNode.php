@@ -2,17 +2,17 @@
 
 namespace AmpedWeb\TwigStackExtension\Node;
 
-use Twig\Node\Node;
-use Twig\Node\CaptureNode;
-use Twig\Attribute\YieldReady;
 use AmpedWeb\TwigStackExtension\StackExtension;
+use Twig\Attribute\YieldReady;
+use Twig\Node\CaptureNode;
+use Twig\Node\Node;
 
 #[YieldReady]
 class PushNode extends Node
 {
     public function __construct(string $stackName, Node $body, int $lineno = 0, string $tag = null, bool $pushOnce = false)
     {
-        parent::__construct(['body'=>$body], ['name'=>$stackName, 'once'=>$pushOnce], $lineno, $tag);
+        parent::__construct(['body' => $body], ['name' => $stackName, 'once' => $pushOnce], $lineno, $tag);
     }
 
     public function compile(\Twig\Compiler $compiler)

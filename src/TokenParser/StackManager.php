@@ -10,7 +10,7 @@ class StackManager
 
     private function getStackByName(string $name): Stack
     {
-        if (!isset($this->stacks[$name])) {
+        if (! isset($this->stacks[$name])) {
             $this->stacks[$name] = new Stack($name);
         }
 

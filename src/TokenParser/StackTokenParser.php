@@ -2,9 +2,9 @@
 
 namespace AmpedWeb\TwigStackExtension\TokenParser;
 
+use AmpedWeb\TwigStackExtension\Node\StackNode;
 use Twig\Token;
 use Twig\TokenParser\AbstractTokenParser;
-use AmpedWeb\TwigStackExtension\Node\StackNode;
 
 /**
  * StackTokenParser.

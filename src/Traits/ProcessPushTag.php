@@ -2,11 +2,11 @@
 
 namespace AmpedWeb\TwigStackExtension\Traits;
 
-use Twig\Token;
-use Twig\Parser;
+use AmpedWeb\TwigStackExtension\Node\PushNode;
 use Twig\Node\Node;
 use Twig\Node\PrintNode;
-use AmpedWeb\TwigStackExtension\Node\PushNode;
+use Twig\Parser;
+use Twig\Token;
 
 trait ProcessPushTag
 {

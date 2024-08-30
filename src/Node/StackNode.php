@@ -2,10 +2,10 @@
 
 namespace AmpedWeb\TwigStackExtension\Node;
 
+use AmpedWeb\TwigStackExtension\StackExtension;
+use Twig\Attribute\YieldReady;
 use Twig\Compiler;
 use Twig\Node\Node;
-use Twig\Attribute\YieldReady;
-use AmpedWeb\TwigStackExtension\StackExtension;
 
 #[YieldReady]
 class StackNode extends Node
