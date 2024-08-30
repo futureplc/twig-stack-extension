@@ -1,11 +1,11 @@
 <?php
 
-namespace AmpedWeb\TwigStackExtension;
+namespace Future\TwigStackExtension;
 
-use AmpedWeb\TwigStackExtension\TokenParser\PushOnceTokenParser;
-use AmpedWeb\TwigStackExtension\TokenParser\PushTokenParser;
-use AmpedWeb\TwigStackExtension\TokenParser\StackManager;
-use AmpedWeb\TwigStackExtension\TokenParser\StackTokenParser;
+use Future\TwigStackExtension\TokenParser\PushOnceTokenParser;
+use Future\TwigStackExtension\TokenParser\PushTokenParser;
+use Future\TwigStackExtension\TokenParser\StackManager;
+use Future\TwigStackExtension\TokenParser\StackTokenParser;
 use Twig\Extension\AbstractExtension;
 
 class StackExtension extends AbstractExtension

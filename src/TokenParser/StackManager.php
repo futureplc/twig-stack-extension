@@ -1,8 +1,8 @@
 <?php
 
-namespace AmpedWeb\TwigStackExtension\TokenParser;
+namespace Future\TwigStackExtension\TokenParser;
 
-use AmpedWeb\TwigStackExtension\Stack;
+use Future\TwigStackExtension\Stack;
 
 class StackManager
 {

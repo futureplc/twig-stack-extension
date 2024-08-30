@@ -1,6 +1,6 @@
 <?php
 
-namespace AmpedWeb\TwigStackExtension;
+namespace Future\TwigStackExtension;
 
 use Twig\Environment as BaseEnvironment;
 use Twig\Error\LoaderError;

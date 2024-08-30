@@ -1,8 +1,8 @@
 <?php
 
-namespace AmpedWeb\TwigStackExtension\Node;
+namespace Future\TwigStackExtension\Node;
 
-use AmpedWeb\TwigStackExtension\StackExtension;
+use Future\TwigStackExtension\StackExtension;
 use Twig\Attribute\YieldReady;
 use Twig\Compiler;
 use Twig\Node\Node;

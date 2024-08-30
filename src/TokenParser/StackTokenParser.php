@@ -1,8 +1,8 @@
 <?php
 
-namespace AmpedWeb\TwigStackExtension\TokenParser;
+namespace Future\TwigStackExtension\TokenParser;
 
-use AmpedWeb\TwigStackExtension\Node\StackNode;
+use Future\TwigStackExtension\Node\StackNode;
 use Twig\Token;
 use Twig\TokenParser\AbstractTokenParser;
 

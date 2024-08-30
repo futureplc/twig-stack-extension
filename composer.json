@@ -24,12 +24,12 @@
     },
     "autoload": {
         "psr-4": {
-            "AmpedWeb\\TwigStackExtension\\": "src"
+            "Future\\TwigStackExtension\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "AmpedWeb\\TwigStackExtension\\Tests\\": "tests"
+            "Future\\TwigStackExtension\\Tests\\": "tests"
         }
     },
     "scripts": {

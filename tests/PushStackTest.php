@@ -1,10 +1,10 @@
 <?php
 
-namespace AmpedWeb\TwigStackExtension\Tests;
+namespace Future\TwigStackExtension\Tests;
 
-use AmpedWeb\TwigStackExtension\Environment;
-use AmpedWeb\TwigStackExtension\StackExtension;
-use AmpedWeb\TwigStackExtension\TokenParser\StackManager;
+use Future\TwigStackExtension\Environment;
+use Future\TwigStackExtension\StackExtension;
+use Future\TwigStackExtension\TokenParser\StackManager;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Twig\Error\SyntaxError;

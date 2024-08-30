@@ -1,9 +1,9 @@
 <?php
 
-namespace AmpedWeb\TwigStackExtension\TokenParser;
+namespace Future\TwigStackExtension\TokenParser;
 
-use AmpedWeb\TwigStackExtension\Node\PushNode;
-use AmpedWeb\TwigStackExtension\Traits\ProcessPushTag;
+use Future\TwigStackExtension\Node\PushNode;
+use Future\TwigStackExtension\Traits\ProcessPushTag;
 use Twig\Token;
 use Twig\TokenParser\AbstractTokenParser;
 

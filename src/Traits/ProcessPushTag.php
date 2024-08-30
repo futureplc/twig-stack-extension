@@ -1,8 +1,8 @@
 <?php
 
-namespace AmpedWeb\TwigStackExtension\Traits;
+namespace Future\TwigStackExtension\Traits;
 
-use AmpedWeb\TwigStackExtension\Node\PushNode;
+use Future\TwigStackExtension\Node\PushNode;
 use Twig\Node\Node;
 use Twig\Node\PrintNode;
 use Twig\Parser;
