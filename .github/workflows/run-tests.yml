@@ -1,18 +1,10 @@
 name: Tests
 
-on:
-  push:
-    paths:
-      - '**.php'
-      - '.github/workflows/run-tests.yml'
-      - 'phpunit.xml.dist'
-      - 'composer.json'
-      - 'composer.lock'
+on: [push, pull_request]
 
 jobs:
   test:
     runs-on: ${{ matrix.os }}
-    timeout-minutes: 5
     strategy:
       fail-fast: true
       matrix:
@@ -40,9 +32,6 @@ jobs:
 
       - name: Install dependencies
         run: composer update --${{ matrix.stability }} --prefer-dist --no-interaction
-
-      - name: List Installed Dependencies
-        run: composer show -D
 
       - name: Execute tests
         run: vendor/bin/phpunit
