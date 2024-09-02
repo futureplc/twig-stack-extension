@@ -1,11 +1,11 @@
 {
-    "name": "ampedweb/twig-stack-extension",
+    "name": "futureplc/twig-stack-extension",
     "description": "Adds the `push` and `stack` tags two twig for better asset management throughout templates.",
     "keywords": [
-        "ampedweb",
+        "futureplc",
         "twig-stack-extension"
     ],
-    "homepage": "https://github.com/ampedweb/twig-stack-extension",
+    "homepage": "https://github.com/futureplc/twig-stack-extension",
     "license": "MIT",
     "authors": [
         {
