@@ -13,6 +13,8 @@ They allow you to "push" content from child views into a named "stack", which ca
 using `{% stack %}`. This is particularly helpful for managing scripts, styles, or other elements that need to be
 included in a specific order or only when certain conditions are met. Such as when using [Twig Components](https://symfony.com/bundles/ux-twig-component/current/index.html).
 
+This plugin is heavily inspired by [filhocodes/twig-stack-extension](https://github.com/filhocodes/twig-stack-extension) and refactored to work with Twig `^3.9.0`.
+
 ## Installation
 
 You can install the package via composer:
@@ -170,6 +172,7 @@ Please review [our security policy](../../security/policy) on how to report secu
 ## Credits
 
 - [Chris Powell](https://github.com/ampedweb)
+- [Marcos SF Filho](https://github.com/filhocodes)
 - [All Contributors](../../contributors)
 
 ## License
