@@ -1,8 +1,8 @@
 # Twig Stack Extension
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/:vendor_slug/:package_slug.svg?style=flat-square)](https://packagist.org/packages/:vendor_slug/:package_slug)
-[![Tests](https://img.shields.io/github/actions/workflow/status/:vendor_slug/:package_slug/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/:vendor_slug/:package_slug/actions/workflows/run-tests.yml)
-[![Total Downloads](https://img.shields.io/packagist/dt/:vendor_slug/:package_slug.svg?style=flat-square)](https://packagist.org/packages/:vendor_slug/:package_slug)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/futureplc/twig-stack-extension.svg?style=flat-square)](https://packagist.org/packages/futureplc/twig-stack-extension)
+[![Tests](https://img.shields.io/github/actions/workflow/status/futureplc/twig-stack-extension/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/futureplc/twig-stack-extension/actions/workflows/run-tests.yml)
+[![Total Downloads](https://img.shields.io/packagist/dt/futureplc/twig-stack-extension.svg?style=flat-square)](https://packagist.org/packages/futureplc/twig-stack-extension)
 
 This Twig extension allows you to "push" content from child views into a named "stack" which can be rendered in another view or layout. This is perfect for many scenarios, like pushing scripts or styles used by components.
 
