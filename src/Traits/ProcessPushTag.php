@@ -44,6 +44,6 @@ trait ProcessPushTag
         //Confirm we have gotten to the "%}" of our endpush/endpushonce block and move the pointer
         $stream->expect(Token::BLOCK_END_TYPE);
 
-        return new PushNode($stackName, $pushBlockBody, $lineNo, $tag, $pushOnce);
+        return new PushNode($stackName, $pushBlockBody, $lineNo, $pushOnce);
     }
 }

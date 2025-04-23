@@ -13,9 +13,9 @@ class StackNode extends Node
     /**
      * new StackNode().
      */
-    public function __construct(string $name, int $lineno = 0, ?string $tag = null)
+    public function __construct(string $name, int $lineno = 0)
     {
-        parent::__construct([], ['name' => $name], $lineno, $tag);
+        parent::__construct([], ['name' => $name], $lineno);
     }
 
     /**
